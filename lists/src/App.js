@@ -5,13 +5,14 @@ import './ListView.js';
 
 import Navigation from './Navigation.js';
 import Container from 'react-bootstrap/Container';
+import HomeView from './HomeView.js';
 import ListView from './ListView.js';
 function App() {
   return (
     <>
     <Navigation/>
     <Container>
-      <ListView/>
+      <HomeView/>
     </Container>
     </>
   );

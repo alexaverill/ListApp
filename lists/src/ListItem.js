@@ -1,7 +1,7 @@
 import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button';
 class ListItem extends React.Component {
     constructor(props){
         super(props);

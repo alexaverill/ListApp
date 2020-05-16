@@ -2,6 +2,7 @@ import React from 'react';
 import ListItem from './ListItem.js';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
 class ClaimItem{
     constructor(name,cost,quantity,comments){
         this.name = name;
@@ -23,7 +24,16 @@ class ListView extends React.Component{
         ]
         const list = claimItems.map((Claim)=> <ListItem name={Claim.name} cost={Claim.cost} quantity={Claim.quantity} comments={Claim.comments} claimed={Claim.claimed}/>);
         return(
-            <>
+            <Container className="innerContent">
+            <div class="listHeader">
+                <div class="backLink">
+                    <a href="#">Return to [EVENT]</a>
+                </div>
+                <div class="headerText">
+                    <h2>EVENT TITLE</h2>
+                    <h3>Event Sub</h3>
+                </div>
+            </div>
             <Row className="titleRow">
                 <Col>
                     Item
@@ -42,7 +52,7 @@ class ListView extends React.Component{
                 </Col>
             </Row>
             {list}
-            </>
+            </Container>
         );
     }
 }

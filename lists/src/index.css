@@ -37,3 +37,19 @@ code {
   align-items: center;
   display: flex;
 }
+.innerContent{
+    margin-top: 4%;
+    padding: 2%;
+    min-height: 80vh;
+    border-radius: 2%;
+  
+}
+.listHeader{
+  display:grid;
+  grid-template-columns: 10% auto;
+}
+.homeHeader{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
