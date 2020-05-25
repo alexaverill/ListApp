@@ -7,6 +7,12 @@ class ListItem extends React.Component {
         super(props);
     }
     render() {
+        let button;
+        if(this.props.edit){
+            button = <Button variant="outline-primary" className="claimBtn" onClick={this.props.editCallback}> Edit </Button>
+        }else{
+            button = <Button variant="outline-primary" className="claimBtn"> Claim </Button>
+        }
         return (
             <>
                 <Row className="listRow">
@@ -22,8 +28,9 @@ class ListItem extends React.Component {
                     <Col>
                         {this.props.comments}
                     </Col>
+                    {this.props.edit}
                     <Col>
-                        <Button variant="outline-primary" className="claimBtn"> Claim </Button>
+                        {button}
                     </Col>
                 </Row>
             </>

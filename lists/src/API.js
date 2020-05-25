@@ -50,3 +50,26 @@ export function getEvent(id){
         return data;
     });
 }
+export function createList(eventID,listName,userID){
+    let listData = {
+        name:listName,
+        event:eventID,
+        userID:userID
+    }
+    let request = URL + '/createList'
+    return PostRequest(request,listData).then(data=>{
+        console.log(data);
+        return data;
+    });
+}
+export function addListItem(_listID,listObj){
+    let data = {
+        listID:_listID,
+        listItem:listObj
+    }
+    let request = URL+'/addListItem';
+    return PostRequest(request,data).then(data=>{
+        console.log(data);
+        return data;
+    });
+}
