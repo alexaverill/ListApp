@@ -1,5 +1,5 @@
 require('dotenv').config();
-const URL = process.env.ApiURL;
+const URL = 'http://localhost:5000';
 async function PostRequest(url='', data={}){
     const response = await fetch(url,{
         method:'POST',
@@ -15,7 +15,7 @@ async function GetRequest(url=''){
     return response.json();
 }
 export function createEvent(_name,_date,_comments,_giving,_recieving){
-    let requestURL = "http://localhost:5000/createEvent";
+    let requestURL = URL+"/createEvent";
     console.log(requestURL);
     let data = {
         name:_name,
@@ -30,9 +30,23 @@ export function createEvent(_name,_date,_comments,_giving,_recieving){
     });
 }
 export function getUsers(){
-    let request = "http://localhost:5000/getUsers"
+    let request = URL+"/getUsers"
     return GetRequest(request).then(data=>{
         return data;
     }
     );
+}
+export function getAllEvents(){
+    let request = URL+"/getEvents";
+    return GetRequest(request).then(data=>{
+        console.log(data['events']);
+        return data['events'];
+    });
+}
+export function getEvent(id){
+    let request = URL+"/getEvent?id="+id;
+    return GetRequest(request).then(data=>{
+        console.log(data);
+        return data;
+    });
 }

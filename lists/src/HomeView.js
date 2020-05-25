@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import EventCard from './EventCard.js';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import {getAllEvents} from './API.js';
 class HomeCard{
     constructor(id,date,title){
         this.id = id;
@@ -12,13 +13,20 @@ class HomeCard{
     }
 }
 class HomeView extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={events:[]};
+    }
+    componentDidMount(){
+        getAllEvents().then(data=>{
+            this.setState({events:data});
+        });
+    }
+
     render(){
-        let cardData = [
-            new HomeCard(1,new Date(2020,11,25),"Christmas"),
-            new HomeCard(1,new Date(2020,9,27),"Alex's Birthday"),
-            new HomeCard(1,new Date(2020,8,27),"Colleens's Birthday"),
-        ];
-        let cards = cardData.map((card)=><EventCard date={card.date} title={card.title}/>);
+        const cards = this.state.events.map((e)=> <EventCard date={new Date(e.eventDate)} title={e.eventName} id={e.id}/>);
+
+
         return(
             <Container className="innerContent">
             <div className="homeHeader">

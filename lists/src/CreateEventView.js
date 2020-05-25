@@ -65,7 +65,6 @@ class CreateEventView extends React.Component {
         return users;
     }
     componentDidMount(){
-      let userList = []
       this.queryUsers().then((user)=>{
           this.setState({users:user});
         });
