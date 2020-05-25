@@ -10,6 +10,8 @@ class CreateListItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = { inEdit: this.props.edit, itemName: '', cost: '', quantity: 1, comments: '', url: '' };
+        console.log("test");
+
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleCost = this.handleCost.bind(this);
@@ -17,6 +19,23 @@ class CreateListItem extends React.Component {
         this.handleURL = this.handleURL.bind(this);
         this.handleComments = this.handleComments.bind(this);
         this.editCallback = this.editCallback.bind(this);
+    }
+    componentDidMount(){
+        if(this.props.itemName !=undefined){
+            this.setState({itemName:this.props.itemName});
+        }
+        if(this.props.cost !=undefined){
+            this.setState({cost:this.props.cost});
+        }
+        if(this.props.quantity !=undefined){
+            this.setState({quantity:this.props.quantity});
+        }
+        if(this.props.comments !=undefined){
+            this.setState({comments:this.props.comments});
+        }
+        if(this.props.url !=undefined){
+            this.setState({url:this.props.url});
+        }
     }
     handleNameChange(event) {
         this.setState({ itemName: event.target.value });

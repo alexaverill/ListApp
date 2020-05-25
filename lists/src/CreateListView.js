@@ -22,10 +22,19 @@ class CreateListView extends React.Component{
         createList(this.props.match.params.id,this.state.eventName,1).then(data=>{
             console.log(data.id);
             this.setState({listID:data.id})
+            let list = this.state.listItems;
+            if(data.items.length>0){
+                for(let x=0; x<data.items.length; x++){
+                    let i = data.items[x];
+                     list.push(<CreateListItem edit={false} listID={this.state.listID} itemName={i.name} cost={i.cost} quantity={i.quantity} url={i.url} comments={i.comments}/>);
+                }
+                
+            }
+            this.setState({listItems:list});
+            
         });
     }
     handleAdd(event){
-        console.log("test");
         let list = this.state.listItems;
         list.push(<CreateListItem edit={true} listID={this.state.listID}/>);
         this.setState({listItems:list});
@@ -37,11 +46,11 @@ class CreateListView extends React.Component{
                 
                 <Row><h1>Create Your Wishlist</h1></Row>
                 <Row><h2>{this.state.eventName}</h2></Row>
-                <Button onClick={this.handleAdd}>Add Item</Button>
+                
                 <Row lg={1} md={1} sm={1} xl={1} xs={1}>
                     {this.state.listItems}
                 </Row>
-                
+                <Button onClick={this.handleAdd}>Add Item</Button>
             </Container>
 
         );
