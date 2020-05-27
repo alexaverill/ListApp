@@ -1,4 +1,7 @@
-require('dotenv').config();
+import {getKey} from './Session.js';
+import { createHashHistory } from "history";
+// require('dotenv').config();
+
 const URL = 'http://localhost:5000';
 async function PostRequest(url='', data={}){
     const response = await fetch(url,{
@@ -6,12 +9,18 @@ async function PostRequest(url='', data={}){
         body:JSON.stringify(data),
         headers:{
             'Content-Type':'application/json',
+            'Authorization':'Bearer '+getKey()
         }
     });
     return response.json();
 }
 async function GetRequest(url=''){
-    const response = await fetch(url);
+    const response = await fetch(url,{
+        method:'GET',
+        headers:{
+            'Authorization':'Bearer '+getKey()
+        }
+    });
     return response.json();
 }
 export function createEvent(_name,_date,_comments,_giving,_recieving){
@@ -72,4 +81,34 @@ export function addListItem(_listID,listObj){
         console.log(data);
         return data;
     });
+}
+export function login(_username,_password){
+    let data = {
+        username:_username,
+        password:_password
+    };
+    let request = URL + "/authenticate";
+    return PostRequest(request,data).then(data=>{
+        return data;
+    });
+}
+export function verifyToken(){
+    let key = getKey();
+    if(key === undefined || key.length <=0){
+        return false;
+    }
+    let data = {
+        token:getKey()
+    };
+    let request = URL + '/verify';
+    return PostRequest(request,data).then(data=>{
+        console.log(data);
+        if(data.status === false){
+            const history = createHashHistory();
+            history.go("/login");
+        }else{
+            return data.status;
+        }
+        
+    })
 }

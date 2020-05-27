@@ -11,7 +11,12 @@ import CreateEventView from './CreateEventView.js';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import EventView from './EventView.js';
 import CreateListView from './CreateListView.js';
+import LoginView from './LoginView.js';
+import { verifyToken } from './API';
+import PrivateRoute from './PrivateRoute';
+
 function App() {
+  //verifyToken();
   return (
     <>
     <Navigation/>
@@ -22,6 +27,7 @@ function App() {
         <Route path="/createEvent" component = {CreateEventView}/>
         <Route path="/events/:id" component = {EventView}/>
         <Route path="/createList/:id" component={CreateListView}/>
+        <Route path="/login" component={LoginView}/>
       </Switch>
       </Container>
     </Router>
