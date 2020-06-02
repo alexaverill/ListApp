@@ -85,6 +85,17 @@ export function getList(listID){
         return data;
     });
 }
+export function claimItem(itemID,userID){
+    let claim = {
+       itemID:itemID,
+       userIDI:userID
+    }
+    let request = URL + '/claimItem'
+    return PostRequest(request,claim).then(data=>{
+        //console.log(data);
+        return data;
+    });
+}
 export function addListItem(_listID,listObj){
     let data = {
         listID:_listID,

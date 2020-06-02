@@ -3,7 +3,7 @@ import ListItem from './ListItem.js';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
-import {getList} from './API.js';
+import {getList,claimItem} from './API.js';
 class ListView extends React.Component{
     constructor(props){
         super(props);
@@ -19,7 +19,7 @@ class ListView extends React.Component{
     }
     render(){
         
-        const list = this.state.list.map((Claim)=> <ListItem name={Claim.name} cost={Claim.cost} quantity={Claim.quantity} comments={Claim.comments} claimed={Claim.claimed}/>);
+        const list = this.state.list.map((Claim)=> <ListItem id={Claim.id} name={Claim.name} cost={Claim.cost} quantity={Claim.quantity} comments={Claim.comments} claimed={Claim.claimed}/>);
         return(
             <Container className="innerContent">
             <div class="listHeader">
