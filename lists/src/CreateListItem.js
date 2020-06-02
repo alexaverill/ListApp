@@ -11,7 +11,6 @@ class CreateListItem extends React.Component {
         super(props);
         this.state = { inEdit: this.props.edit, itemName: '', cost: '', quantity: 1, comments: '', url: '' };
         console.log("test");
-
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleCost = this.handleCost.bind(this);

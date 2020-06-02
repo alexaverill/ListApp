@@ -34,7 +34,7 @@ class HomeView extends React.Component{
                     <h2>Events</h2>
                 </div>
                 <div className="">
-                    <Button variant="primary" className="addEventBtn">Add Event</Button>
+                    <a href="/createEvent" className="btn btn-primary addEventBtn">Add Event</a>
                 </div>
             </div>
             <Row>

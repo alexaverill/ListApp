@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import {createList,getEvent} from './API.js';
 import CreateListItem from './CreateListItem.js';
+import {Link} from "react-router-dom";
 class CreateListView extends React.Component{
     constructor(props){
         super(props);
@@ -14,18 +15,20 @@ class CreateListView extends React.Component{
         this.handleAdd = this.handleAdd.bind(this);
     }
     componentDidMount(){
+        console.log(this.props.match.params.id); 
         getEvent(this.props.match.params.id).then(data=>{
-            console.log(data.id);
-            this.setState({eventName:data.name,eventID:data.id})
+            
+            this.setState({eventName:data.event.eventName,eventID:data.event.id})
 
         });
         createList(this.props.match.params.id,this.state.eventName,1).then(data=>{
             console.log(data.id);
             this.setState({listID:data.id})
             let list = this.state.listItems;
-            if(data.items.length>0){
-                for(let x=0; x<data.items.length; x++){
-                    let i = data.items[x];
+            if(data.list != undefined && data.list.length>0){
+                let listItems = data.list[0].list_items;
+                for(let x=0; x<listItems.length; x++){
+                    let i = listItems[x];
                      list.push(<CreateListItem edit={false} listID={this.state.listID} itemName={i.name} cost={i.cost} quantity={i.quantity} url={i.url} comments={i.comments}/>);
                 }
                 
@@ -40,12 +43,11 @@ class CreateListView extends React.Component{
         this.setState({listItems:list});
     }
     render(){
-        
+        let url = "/events/"+this.state.eventID;
         return (
             <Container className="innerContent">
-                
-                <Row><h1>Create Your Wishlist</h1></Row>
-                <Row><h2>{this.state.eventName}</h2></Row>
+                <Row> <Link to={url}>Return to {this.state.eventName}</Link> </Row>
+                <Row><h1>Create Your Wishlist for {this.state.eventName}</h1></Row>
                 
                 <Row lg={1} md={1} sm={1} xl={1} xs={1}>
                     {this.state.listItems}

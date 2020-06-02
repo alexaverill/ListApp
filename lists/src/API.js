@@ -34,8 +34,8 @@ export function createEvent(_name,_date,_comments,_giving,_recieving){
         recieving:_recieving
     }
     console.log(JSON.stringify(data));
-    PostRequest(requestURL,data).then(data=>{
-        console.log(data);
+    return PostRequest(requestURL,data).then(data=>{
+        return data;
     });
 }
 export function getUsers(){
@@ -55,7 +55,14 @@ export function getAllEvents(){
 export function getEvent(id){
     let request = URL+"/getEvent?id="+id;
     return GetRequest(request).then(data=>{
-        console.log(data);
+        
+        return data;
+    });
+}
+export function getEventLists(id){
+    let request = URL+"/getEventLists?id="+id;
+    return GetRequest(request).then(data=>{
+        console.log(data.lists.items);
         return data;
     });
 }
@@ -67,6 +74,13 @@ export function createList(eventID,listName,userID){
     }
     let request = URL + '/createList'
     return PostRequest(request,listData).then(data=>{
+        console.log(data);
+        return data;
+    });
+}
+export function getList(listID){
+    let request = URL+"/getList?id="+listID;
+    return GetRequest(request).then(data=>{
         console.log(data);
         return data;
     });
@@ -102,13 +116,13 @@ export function verifyToken(){
     };
     let request = URL + '/verify';
     return PostRequest(request,data).then(data=>{
-        console.log(data);
+        console.log(data.status);
+        return true;
         if(data.status === false){
-            const history = createHashHistory();
-            history.go("/login");
+            return false;
         }else{
-            return data.status;
+            return true;
         }
         
-    })
+    });
 }

@@ -3,26 +3,23 @@ import ListItem from './ListItem.js';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
-class ClaimItem{
-    constructor(name,cost,quantity,comments){
-        this.name = name;
-        this.cost = cost;
-        this.quantity = quantity;
-        this.comments = comments;
-        this.claimed = false;
-    }
-}
+import {getList} from './API.js';
 class ListView extends React.Component{
     constructor(props){
         super(props);
+        this.state = {list:[]};
+    }
+    componentDidMount(){
+        getList(this.props.match.params.id).then(data=>{
+            console.log(data);
+            if(data.length > 0){
+                this.setState({list:data[0].list_items});
+            }
+        })
     }
     render(){
-        let claimItems = [
-            new ClaimItem("Test",10,100,"Test"),
-            new ClaimItem("Cats",1,1,"Fluffy"),
-            new ClaimItem("WAMPAS",100,1,"")
-        ]
-        const list = claimItems.map((Claim)=> <ListItem name={Claim.name} cost={Claim.cost} quantity={Claim.quantity} comments={Claim.comments} claimed={Claim.claimed}/>);
+        
+        const list = this.state.list.map((Claim)=> <ListItem name={Claim.name} cost={Claim.cost} quantity={Claim.quantity} comments={Claim.comments} claimed={Claim.claimed}/>);
         return(
             <Container className="innerContent">
             <div class="listHeader">

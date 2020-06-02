@@ -6,7 +6,9 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import {createEvent, getUsers} from './API.js';
+import {  useHistory } from 'react-router-dom';
 class CreateEventView extends React.Component {
+    
     constructor(props){
         super(props);
         this.state = {name:'',date:new Date(),comments:'',users:[{id:1,username:"test"},{id:2,username:"lol"}],giving:[],recieving:[]};
@@ -23,11 +25,18 @@ class CreateEventView extends React.Component {
     handleDateChange(event){
         this.setState({date:event.target.value});
     }
-    handleSubmit(event){
+    async handleSubmit(event){
         console.log("Submitted");
         //console.log(event);
         event.preventDefault();
-        createEvent(this.state.name,this.state.date,this.state.comments,this.state.giving,this.state.recieving);
+        createEvent(this.state.name,this.state.date,this.state.comments,this.state.giving,this.state.recieving).then(data=>{
+            if(data.status ==="true"){
+                let url = "/events/"+data.id;
+                this.props.history.push(url);
+            }
+            console.log(data);
+        });
+
     }
     handleGiving(event){
         let value = event.target.name;
