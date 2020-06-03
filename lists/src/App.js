@@ -43,8 +43,9 @@ class App extends React.Component {
     <Navigation/>
     <Router>
       <Container>
+        
       <Switch>
-        <Route path="/" exact component={HomeView}/>
+        <PrivateRoute path="/" exact component={HomeView}/>
         <Route path = "/createEvent" onEnter={this.requireAuth} component={CreateEventView}/>
         <Route path="/events/:id" component = {EventView}/>
         <Route path="/createList/:id" component={CreateListView}/>
@@ -57,23 +58,41 @@ class App extends React.Component {
   );
   }
 }
-function PrivateRoute({ children, ...rest }) {
-  return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        this ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: location }
-            }}
-          />
-        )
-      }
-    />
-  );
+class PrivateRoute extends React.Component{
+  constructor(props){
+    super(props);
+    this.state={loaded:false,authenticated:false}
+  }
+  componentWillMount(){
+    this.authenticate();
+  }
+  authenticate(){
+    verifyToken().then((data)=>{
+      this.setState({authenticated:data,loaded:true});
+    })
+  }
+  render() {
+    const { component: Component, ...rest } = this.props;
+    const { loaded, authenticated } = this.state;
+    console.log(this.props);
+    if (!loaded) return null;
+    return (
+      <Route
+        {...rest}
+        render={props => {
+          return authenticated ? (
+            <Component {...props} />
+          ) : (
+            <Redirect
+              to={{
+                pathname: '/login',
+              }}
+            />
+          );
+        }}
+      />
+    );
+  }
+
 }
 export default App;

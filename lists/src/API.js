@@ -128,7 +128,7 @@ export function verifyToken(){
     let request = URL + '/verify';
     return PostRequest(request,data).then(data=>{
         console.log(data.status);
-        return true;
+        //return true;
         if(data.status === false){
             return false;
         }else{
