@@ -31,7 +31,8 @@ export function createEvent(_name,_date,_comments,_giving,_recieving){
         date:_date,
         comments:_comments,
         giving:_giving,
-        recieving:_recieving
+        recieving:_recieving,
+        image:Math.floor(Math.random() * 25)
     }
     console.log(JSON.stringify(data));
     return PostRequest(requestURL,data).then(data=>{
