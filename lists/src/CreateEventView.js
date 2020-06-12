@@ -26,7 +26,7 @@ class CreateEventView extends React.Component {
         this.setState({date:event.target.value});
     }
     async handleSubmit(event){
-        console.log("Submitted");
+        //console.log("Submitted");
         //console.log(event);
         event.preventDefault();
         createEvent(this.state.name,this.state.date,this.state.comments,this.state.giving,this.state.recieving).then(data=>{

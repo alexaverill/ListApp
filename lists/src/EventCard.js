@@ -9,9 +9,10 @@ class EventCard extends React.Component {
     }
     render() {
         let url = "events/"+this.props.id;
+        let image = "images/"+this.props.image+".jpg";
         return (
             <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src="images/1.jpg" />
+                <Card.Img variant="top" src={image} />
                 <Card.Body>
                     <Card.Subtitle>{this.props.date.toDateString()}</Card.Subtitle>
                     <Card.Title>{this.props.title}</Card.Title>
