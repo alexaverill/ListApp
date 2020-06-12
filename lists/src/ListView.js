@@ -3,34 +3,31 @@ import ListItem from './ListItem.js';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
-import {getList,claimItem} from './API.js';
+import {getList,claimItem, getEvent} from './API.js';
+import {Link} from "react-router-dom";
 class ListView extends React.Component{
     constructor(props){
         super(props);
-        this.state = {list:[]};
+        this.state = {eventName:'',eventID:-1,list:[],user:''};
     }
     componentDidMount(){
         getList(this.props.match.params.id).then(data=>{
-            console.log(data);
+            //console.log(data);
             if(data.length > 0){
-                this.setState({list:data[0].list_items});
+                this.setState({list:data[0].list_items,user:data[0].user.username,eventName:data[0].event.eventName,eventID:data[0].event.id});
+                
             }
-        })
+        });
+        
     }
     render(){
-        
-        const list = this.state.list.map((Claim)=> <ListItem id={Claim.id} name={Claim.name} cost={Claim.cost} quantity={Claim.quantity} comments={Claim.comments} claimed={Claim.claimed}/>);
+        let url = "/events/"+this.state.eventID;
+        const list = this.state.list.map((Claim)=> 
+            <ListItem id={Claim.id} name={Claim.name} cost={Claim.cost} quantity={Claim.quantity} comments={Claim.comments} claimed={Claim.isClaimed} claimedBy={Claim.claimedBy}/>);
         return(
             <Container className="innerContent">
-            <div class="listHeader">
-                <div class="backLink">
-                    <a href="#">Return to [EVENT]</a>
-                </div>
-                <div class="headerText">
-                    <h2>EVENT TITLE</h2>
-                    <h3>Event Sub</h3>
-                </div>
-            </div>
+            <Row> <Link to={url}> &lt; Return to {this.state.eventName}</Link> </Row>
+                <Row className="centered"><h1>{this.state.user}'s Wishlist</h1></Row>
             <Row className="titleRow">
                 <Col>
                     Item

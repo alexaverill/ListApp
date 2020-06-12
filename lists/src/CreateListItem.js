@@ -72,31 +72,31 @@ class CreateListItem extends React.Component {
         if (this.state.inEdit) {
             return (
                 <Row lg={1} md={1} sm={1} xl={1} xs={1}>
-                    <Form onSubmit={this.handleSubmit}>
+                    <Form onSubmit={this.handleSubmit} className="list-edit">
                         <Form.Row>
-                            <Form.Group controlId="itemName" md="4">
+                            <Form.Group controlId="itemName" className="form-group-right-spacing" md="4">
                                 <Form.Label>Item Name</Form.Label>
                                 <Form.Control type="text" name="name" value={this.state.itemName} onChange={this.handleNameChange} />
                             </Form.Group>
 
-                            <Form.Group controlId="cost" sm="1" >
+                            <Form.Group controlId="cost" className="form-group-right-spacing"  sm="1" >
                                 <Form.Label >Cost:</Form.Label>
                                 <Form.Control name="cost" type="number" min="0" value={this.state.cost} step="any" onChange={this.handleCost} />
                             </Form.Group>
-                            <Form.Group controlId="quantity" md="1">
+                            <Form.Group controlId="quantity" className="form-group-right-spacing" md="1">
                                 <Form.Label>Quantity:</Form.Label>
                                 <Form.Control name="quantity" type="number" min="1" step="1" value={this.state.quantity}  onChange={this.handleQuantity} />
                             </Form.Group>
                         </Form.Row>
 
-                        <Form.Group controlId="url">
+                        <Form.Group controlId="url" className="form-group-right-spacing" >
                             <Form.Label column >Item URL:</Form.Label>
                             <Form.Control name="url" type="text" onChange={this.handleURL} value={this.state.url} />
                         </Form.Group>
 
 
 
-                        <Form.Group controlId="comments">
+                        <Form.Group controlId="comments" className="form-group-right-spacing" >
                             <Form.Label column >Comments:</Form.Label>
                             <Form.Control name="comments" type="text" onChange={this.handleComments} value={this.state.comments} />
                         </Form.Group>

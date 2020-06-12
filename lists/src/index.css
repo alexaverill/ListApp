@@ -48,8 +48,38 @@ code {
   display:grid;
   grid-template-columns: 10% auto;
 }
-.homeHeader{
+.homeHeader,.header{
   display:flex;
   flex-direction: row;
   justify-content: space-around;
+  margin-bottom:3%;
+}
+.header-column{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 3%;
+}
+.header-date{
+  font-weight: bold;
+}
+.table-header{
+  margin-bottom: 1%;
+  font-weight: bold;
+}
+.list-edit{
+  margin-top:2%;
+  margin-bottom:2%;
+}
+.form-group-right-spacing{
+  margin-right: 8%;
+}
+.header-btn{
+  margin-top:3%;
+}
+.centered{
+  justify-content: center;
+}
+.card{
+  margin:3%;
 }

@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import {createList,getEvent} from './API.js';
 import CreateListItem from './CreateListItem.js';
 import {Link} from "react-router-dom";
+import { getID } from './Session.js';
 class CreateListView extends React.Component{
     constructor(props){
         super(props);
@@ -21,7 +22,7 @@ class CreateListView extends React.Component{
             this.setState({eventName:data.event.eventName,eventID:data.event.id})
 
         });
-        createList(this.props.match.params.id,this.state.eventName,1).then(data=>{
+        createList(this.props.match.params.id,this.state.eventName,getID()).then(data=>{
             console.log(data.id);
             this.setState({listID:data.id})
             let list = this.state.listItems;
@@ -46,8 +47,8 @@ class CreateListView extends React.Component{
         let url = "/events/"+this.state.eventID;
         return (
             <Container className="innerContent">
-                <Row> <Link to={url}>Return to {this.state.eventName}</Link> </Row>
-                <Row><h1>Create Your Wishlist for {this.state.eventName}</h1></Row>
+                <Row> <Link to={url}> &lt; Return to {this.state.eventName}</Link> </Row>
+                <Row className="centered"><h1>Create Your Wishlist for {this.state.eventName}</h1></Row>
                 
                 <Row lg={1} md={1} sm={1} xl={1} xs={1}>
                     {this.state.listItems}

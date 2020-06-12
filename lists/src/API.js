@@ -74,27 +74,38 @@ export function createList(eventID,listName,userID){
     }
     let request = URL + '/createList'
     return PostRequest(request,listData).then(data=>{
-        console.log(data);
+        //console.log(data);
         return data;
     });
 }
 export function getList(listID){
     let request = URL+"/getList?id="+listID;
     return GetRequest(request).then(data=>{
-        console.log(data);
+        //console.log(data);
         return data;
     });
 }
 export function claimItem(itemID,userID){
     let claim = {
        itemID:itemID,
-       userIDI:userID
+       userID:userID
     }
     let request = URL + '/claimItem'
     return PostRequest(request,claim).then(data=>{
         //console.log(data);
         return data;
     });
+}
+export function unclaimItem(itemID,userID){
+    let claim = {
+        itemID:itemID,
+        userID:userID
+     }
+     let request = URL + '/unclaimItem'
+     return PostRequest(request,claim).then(data=>{
+         //console.log(data);
+         return data;
+     });
 }
 export function addListItem(_listID,listObj){
     let data = {
@@ -119,8 +130,8 @@ export function login(_username,_password){
 }
 export function verifyToken(){
     let key = getKey();
-    if(key === undefined || key.length <=0){
-        return false;
+    if(key === null || key === undefined || key.length <=0){
+        return Promise.resolve(false);
     }
     let data = {
         token:getKey()

@@ -58,6 +58,7 @@ class App extends React.Component {
   );
   }
 }
+//borrowed from https://stackoverflow.com/questions/49309071/react-private-router-with-async-fetch-request
 class PrivateRoute extends React.Component{
   constructor(props){
     super(props);

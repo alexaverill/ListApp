@@ -7,7 +7,7 @@ export function getUsername(){
     return localStorage.getItem('username');
 }
 export function getID(){
-    return localStorage.getItem('id');
+    return Number(localStorage.getItem('id'));
 }
 export function getKey(){
     return localStorage.getItem('key');

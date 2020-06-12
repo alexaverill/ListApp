@@ -6,15 +6,19 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import {login} from './API.js';
-import {startSession} from './Session.js';
+import {startSession,endSession} from './Session.js';
 import { Redirect } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 class LoginView extends React.Component{
     constructor(props){
         super(props);
-        this.state={username:'',password:''}
+        this.state={username:'',password:'',loginError:false}
         this.handleUserChanged = this.handleUserChanged.bind(this);
         this.handlePasswordChanged = this.handlePasswordChanged.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    componentDidMount(){
+        endSession();
     }
     handlePasswordChanged(event){
         this.setState({password:event.target.value});
@@ -25,11 +29,12 @@ class LoginView extends React.Component{
     handleSubmit(event){
         login(this.state.username,this.state.password).then(data=>{
             console.log(data);
-            if(data.authentication){
-            startSession(this.state.username,data.id,data.authKey);
-            
+            if(data.authentication.valid){
+                startSession(this.state.username,data.id,data.authKey);
+                this.props.history.push('/');
             }else{
                 //show error
+                this.setState({loginError:true});
             }
         });
         event.preventDefault();
@@ -52,6 +57,7 @@ class LoginView extends React.Component{
                         Login
                     </Button>
                 </Form>
+                {this.state.loginError ? <h2>Invalid Login</h2>:''}
             </Container>
         );
     }
