@@ -51,6 +51,9 @@ class ListItem extends React.Component {
                     <Col>
                         {this.props.comments}
                     </Col>
+                    <Col>
+                    <a href={this.props.url}>{this.props.name}</a>
+                    </Col>
                     {this.props.edit}
                     <Col>
                         {button}
