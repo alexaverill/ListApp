@@ -108,7 +108,7 @@ class CreateListItem extends React.Component {
         } else {
             return (
                 <Row lg={1} md={1} sm={1} xl={1} xs={1}>
-                <ListItem name={this.state.itemName} cost={this.state.cost} quantity={this.state.quantity} comments={this.state.comments} edit={true} editCallback={this.editCallback} />
+                <ListItem name={this.state.itemName} cost={this.state.cost} url ={this.state.url} quantity={this.state.quantity} comments={this.state.comments} edit={true} editCallback={this.editCallback} />
                 </Row>
             );
         }
