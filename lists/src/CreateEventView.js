@@ -93,7 +93,7 @@ class CreateEventView extends React.Component {
                     <Form.Group controlId="eventTitle" as={Row}>
                         <Form.Label column sm="2">Name</Form.Label>
                         <Col sm="4">
-                        <Form.Control type="text" name="name" onChange={this.handleNameChange} />
+                        <Form.Control type="text" name="name"  maxLength="100" onChange={this.handleNameChange} />
                         </Col>
                     </Form.Group>
 

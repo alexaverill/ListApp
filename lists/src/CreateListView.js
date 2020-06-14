@@ -49,7 +49,23 @@ class CreateListView extends React.Component{
             <Container className="innerContent">
                 <Row> <Link to={url}> &lt; Return to {this.state.eventName}</Link> </Row>
                 <Row className="centered"><h1>Create Your Wishlist for {this.state.eventName}</h1></Row>
-                
+                <Row className="titleRow" lg={1} md={1} sm={1} xl={1} xs={1}>
+                <Col>
+                    Item
+                </Col>
+                <Col>
+                    Cost
+                </Col>
+                <Col>
+                    Quantity
+                </Col>
+                <Col>
+                    Comments
+                </Col>
+                <Col>
+                    
+                </Col>
+            </Row>
                 <Row lg={1} md={1} sm={1} xl={1} xs={1}>
                     {this.state.listItems}
                 </Row>

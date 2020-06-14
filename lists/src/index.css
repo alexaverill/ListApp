@@ -91,3 +91,8 @@ code {
 .navbar-light .navbar-nav .nav-link {
   color:white;
 }
+a.navbar-brand:hover{
+  color: #dbe0e0;
+
+
+}

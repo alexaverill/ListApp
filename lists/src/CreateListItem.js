@@ -1,8 +1,6 @@
 import React from 'react';
 import ListItem from './ListItem.js';
-import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import {addListItem} from './API.js';
@@ -20,19 +18,19 @@ class CreateListItem extends React.Component {
         this.editCallback = this.editCallback.bind(this);
     }
     componentDidMount(){
-        if(this.props.itemName !=undefined){
+        if(this.props.itemName !==undefined){
             this.setState({itemName:this.props.itemName});
         }
-        if(this.props.cost !=undefined){
+        if(this.props.cost !==undefined){
             this.setState({cost:this.props.cost});
         }
-        if(this.props.quantity !=undefined){
+        if(this.props.quantity !==undefined){
             this.setState({quantity:this.props.quantity});
         }
-        if(this.props.comments !=undefined){
+        if(this.props.comments !==undefined){
             this.setState({comments:this.props.comments});
         }
-        if(this.props.url !=undefined){
+        if(this.props.url !==undefined){
             this.setState({url:this.props.url});
         }
     }
@@ -76,7 +74,7 @@ class CreateListItem extends React.Component {
                         <Form.Row>
                             <Form.Group controlId="itemName" className="form-group-right-spacing" md="4">
                                 <Form.Label>Item Name</Form.Label>
-                                <Form.Control type="text" name="name" value={this.state.itemName} onChange={this.handleNameChange} />
+                                <Form.Control type="text" name="name" value={this.state.itemName} required maxLength="100" onChange={this.handleNameChange} />
                             </Form.Group>
 
                             <Form.Group controlId="cost" className="form-group-right-spacing"  sm="1" >
@@ -91,14 +89,14 @@ class CreateListItem extends React.Component {
 
                         <Form.Group controlId="url" className="form-group-right-spacing" >
                             <Form.Label column >Item URL:</Form.Label>
-                            <Form.Control name="url" type="text" onChange={this.handleURL} value={this.state.url} />
+                            <Form.Control name="url" type="text" onChange={this.handleURL} value={this.state.url}  maxLength="255" />
                         </Form.Group>
 
 
 
                         <Form.Group controlId="comments" className="form-group-right-spacing" >
                             <Form.Label column >Comments:</Form.Label>
-                            <Form.Control name="comments" type="text" onChange={this.handleComments} value={this.state.comments} />
+                            <Form.Control name="comments" type="text" onChange={this.handleComments} value={this.state.comments}  maxLength="255"/>
                         </Form.Group>
 
                         <Button variant="primary" type="submit">
