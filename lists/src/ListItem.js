@@ -33,7 +33,7 @@ class ListItem extends React.Component {
             }else if(this.state.claimed ){
                 button=''//<Button variant="outline-primary" className="claimBtn" disabled="true"> Claim </Button>;
             }else{
-                button = <Button variant="outline-primary" className="claimBtn" onClick={this.claim}> Claim </Button>
+                button = <Button variant="primary" className="claimBtn" onClick={this.claim}> Claim </Button>
             }
         }
         return (
