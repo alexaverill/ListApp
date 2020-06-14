@@ -3,6 +3,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import {getUsername} from './Session'
+import Container from 'react-bootstrap/Container';
 class Navigation extends React.Component {
     constructor(props) {
         super(props);
@@ -16,6 +17,7 @@ class Navigation extends React.Component {
         return (
             
             <Navbar expand="lg">
+                <Container>
                 <Navbar.Brand href="/">List App</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="" className="justify-content-end">
@@ -30,6 +32,7 @@ class Navigation extends React.Component {
                         </NavDropdown>}
                     </Nav>
                 </Navbar.Collapse>
+                </Container>
             </Navbar>
         );
     }

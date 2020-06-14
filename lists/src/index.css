@@ -83,3 +83,11 @@ code {
 .card{
   margin:3%;
 }
+.navbar-light .navbar-brand{
+    color: white;
+    font-family: 'Permanent Marker', cursive;
+  
+}
+.navbar-light .navbar-nav .nav-link {
+  color:white;
+}
