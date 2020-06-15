@@ -36,11 +36,17 @@ class ListItem extends React.Component {
                 button = <Button variant="primary" className="claimBtn" onClick={this.claim}> Claim </Button>
             }
         }
+        let name;
+        if(this.props.url !== undefined){
+            name = <a href={this.props.url}>{this.props.name}</a>
+        }else{
+            name  = this.props.name;
+        }
         return (
             <>
                 <Row className="listRow">
                     <Col>
-                        {this.props.name}
+                        {name}
                     </Col>
                     <Col>
                         {this.props.cost}
@@ -51,9 +57,7 @@ class ListItem extends React.Component {
                     <Col>
                         {this.props.comments}
                     </Col>
-                    <Col>
-                    <a href={this.props.url}>{this.props.name}</a>
-                    </Col>
+                
                     {this.props.edit}
                     <Col>
                         {button}

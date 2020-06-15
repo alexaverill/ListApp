@@ -41,9 +41,7 @@ class ListView extends React.Component{
                 <Col>
                     Comments
                 </Col>
-                <Col>
-                    Link
-                </Col>
+                
                 <Col>
                     
                 </Col>

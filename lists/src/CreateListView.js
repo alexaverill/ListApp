@@ -62,9 +62,7 @@ class CreateListView extends React.Component{
                 <Col>
                     Comments
                 </Col>
-                <Col>
-                    Link
-                </Col>
+                
             </Row>
                 <Row lg={1} md={1} sm={1} xl={1} xs={1}>
                     {this.state.listItems}
