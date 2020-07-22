@@ -46,6 +46,16 @@ export function getUsers(){
     }
     );
 }
+export function getUser(userID){
+    let request = URL + "/getUser";
+    let data = {
+        id:userID
+    }
+    return PostRequest(request,data).then(data=>{
+        console.log("Get User: "+data)
+        return data;
+    })
+}
 export function getAllEvents(){
     let request = URL+"/getEvents";
     return GetRequest(request).then(data=>{
